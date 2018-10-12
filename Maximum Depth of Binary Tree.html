@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>返回二叉树深度</title>
+</head>
+<body>
+<script>
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {number}
+     */
+    //深度优先遍历（DFS）思路是沿着一条路走到底，然后回溯，看还有哪些分支没有走
+    var maxDepth = function (root) {// 第一次
+        if (root === null) {
+            return 0;
+        } else {
+            var leftDepth = maxDepth(root.left),//递归
+                    rightDepth = maxDepth(root.right);
+            var childDepth = leftDepth > rightDepth ? leftDepth : rightDepth;//深度遍历二叉树
+            return childDepth + 1;//root 不为空
+        }
+    };
+    //示例:给定二叉树 [3,9,20,null,null,15,7]
+    //H = 1 + max(H(9-subtree),H(20-subtree)) = 3;
+    //H(9-subtree) = 1 + max(0,0) = 1;
+    //H(20-subtree) = 1 + max(H(15-subtree),H(7-subtree)) = 2;
+    //H(15-subtree) = 1 + max(0,0) = 1;
+    //H(7-subtree) = 1 + max(0,0) = 1;
+</script>
+</body>
+</html>
